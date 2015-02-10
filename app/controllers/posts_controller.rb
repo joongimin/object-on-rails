@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = @blog.new_post(params[:post])
+    @post = @blog.new_post(post_params)
     if @post.publish
       redirect_to root_path, notice: 'Post added!'
     else
@@ -20,4 +20,9 @@ class PostsController < ApplicationController
     @post = exhibit(Post.find_by_id(params[:id]), self)
     respond_with(@post)
   end
+
+  private
+    def post_params
+      params.require(:post).permit(:title, :body, :image_url)
+    end
 end
