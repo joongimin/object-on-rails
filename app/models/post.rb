@@ -19,7 +19,10 @@ class Post < ActiveRecord::Base
     :partial_writes,
     :id,
     :id=,
-    :model_name
+    :model_name,
+    :to_key,
+    :to_model,
+    :persisted?,
   ]
   hide_singletons ActiveRecord::Calculations,
                   ActiveRecord::FinderMethods,
