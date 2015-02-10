@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'sqlite3'
+gem 'responders'
 
 group :development, :test do
   gem 'minitest'
