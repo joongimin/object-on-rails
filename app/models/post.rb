@@ -29,7 +29,7 @@ class Post < ActiveRecord::Base
                   ActiveRecord::Relation
 
   validates :title, presence: true
-  attr_accessor :blog
+  attr_writer :blog
 
   def self.most_recent(limit=10)
     all.order(pubdate: :desc).limit(limit)
@@ -41,6 +41,10 @@ class Post < ActiveRecord::Base
 
   def self.first_after(date)
     where('pubdate > ?', date).order(pubdate: :asc).first
+  end
+
+  def blog
+    @blog ||= THE_BLOG
   end
 
   def prev

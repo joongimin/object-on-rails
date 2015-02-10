@@ -6,6 +6,18 @@ class Blog
     ActiveModel::Name.new(self)
   end
 
+  def model_name
+    self.class.model_name
+  end
+
+  def to_model
+    self
+  end
+
+  def persisted?
+    true
+  end
+
   def initialize(entry_fetcher=Post.public_method(:most_recent))
     @entry_fetcher = entry_fetcher
   end

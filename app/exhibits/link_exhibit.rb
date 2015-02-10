@@ -8,15 +8,15 @@ class LinkExhibit < Exhibit
   end
 
   def prev_url
-    @context.url_for(prev)
+    url_for(prev)
   end
 
   def next_url
-    @context.url_for(self.next)
+    url_for(self.next)
   end
 
   def up_url
-    @context.url_for(up)
+    url_for(up)
   end
 
   def links_hash
@@ -34,4 +34,9 @@ class LinkExhibit < Exhibit
   def to_json(options={})
     serializable_hash(options).to_json
   end
+
+  private
+    def url_for(o)
+      o ? @context.url_for(o) : nil
+    end
 end
