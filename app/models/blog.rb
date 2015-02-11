@@ -1,7 +1,5 @@
 require_relative 'taggable'
 
-module Conversions; end
-
 class Blog
   attr_reader :entries
   attr_writer :post_source
