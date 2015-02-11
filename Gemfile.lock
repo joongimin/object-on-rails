@@ -48,6 +48,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -56,6 +58,7 @@ GEM
     coderay (1.1.0)
     columnize (0.9.0)
     database_cleaner (1.4.0)
+    debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     erubis (2.7.0)
     globalid (0.3.2)
@@ -127,6 +130,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-nulldb-adapter!
   better_errors
+  binding_of_caller
   byebug
   database_cleaner
   minitest

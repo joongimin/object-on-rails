@@ -9,6 +9,7 @@ group :development, :test do
   gem 'rr'
   gem 'byebug'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'database_cleaner'
   gem 'activerecord-nulldb-adapter', github: 'joongimin/nulldb'
 end
