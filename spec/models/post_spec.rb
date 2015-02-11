@@ -1,6 +1,3 @@
-require 'time'
-require 'active_model'
-require 'byebug'
 require_relative '../spec_helper_nulldb'
 require_relative '../../app/models/post'
 

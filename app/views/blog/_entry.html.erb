@@ -3,6 +3,9 @@
   <header>
     <p><time pubdate="pubdate"><%= entry.pubdate %></time></p>
     <h3><%= entry.title %></h3>
+    <p class="entry_tags">Tags:
+      <span class="tags"><%= Taggable(entry).tags %></span>
+    </p>
   </header>
   <%= entry.render_body %>
 </article>

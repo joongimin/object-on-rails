@@ -3,6 +3,8 @@ require 'active_record'
 require 'fig_leaf'
 
 class Post < ActiveRecord::Base
+  LIMIT_DEFAULT = 10
+
   include FigLeaf
   hide ActiveRecord::Base, ancestors: true, except: [
     Object,
@@ -23,6 +25,8 @@ class Post < ActiveRecord::Base
     :to_key,
     :to_model,
     :persisted?,
+    :destroyed?,
+    :[]
   ]
   hide_singletons ActiveRecord::Calculations,
                   ActiveRecord::FinderMethods,
@@ -31,7 +35,7 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   attr_writer :blog
 
-  def self.most_recent(limit=10)
+  def self.most_recent(limit=LIMIT_DEFAULT)
     all.order(pubdate: :desc).limit(limit)
   end
 

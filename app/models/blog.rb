@@ -1,3 +1,7 @@
+require_relative 'taggable'
+
+module Conversions; end
+
 class Blog
   attr_reader :entries
   attr_writer :post_source
@@ -18,7 +22,7 @@ class Blog
     true
   end
 
-  def initialize(entry_fetcher=Post.public_method(:most_recent))
+  def initialize(entry_fetcher=->{Taggable(Post.most_recent)})
     @entry_fetcher = entry_fetcher
   end
 
@@ -48,8 +52,27 @@ class Blog
     @entry_fetcher.()
   end
 
+  def filter_by_tag(tag)
+    FilteredBlog.new(self, tag)
+  end
+
+  def tags
+    entries.all_tags_alphabetical
+  end
+
+  class FilteredBlog < DelegateClass(Blog)
+    def initialize(blog, tag)
+      super(blog)
+      @tag = tag
+    end
+
+    def entries
+      super.tagged(@tag)
+    end
+  end
+
   private
     def post_source
-      @post_source ||= Post.public_method(:new)
+      @post_source ||= Taggable(Post).public_method(:new)
     end
 end
