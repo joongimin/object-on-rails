@@ -19,10 +19,11 @@ describe PicturePostExhibit do
   end
 
   it 'renders itself with the appropriate partial' do
-    mock(@context).render(
+    template = Object.new
+    mock(template).render(
       partial: '/posts/picture_body', locals: {post: @it}){
       'THE_HTML'
     }
-    @it.render_body.must_equal 'THE_HTML'
+    @it.render_body(template).must_equal 'THE_HTML'
   end
 end
