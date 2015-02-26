@@ -4,11 +4,11 @@ class PostsController < ApplicationController
   respond_to :html, :json
 
   def new
-    @post = @blog.new_post
+    @post = blog.new_post
   end
 
   def create
-    @post = Taggable(@blog.new_post(post_params))
+    @post = Taggable(blog.new_post(post_params))
     if @post.publish
       redirect_to root_path, notice: 'Post added!'
     else

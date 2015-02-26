@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :init_blog
-
   helper :exhibits
 
   def blog_url(*)
@@ -12,10 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-    def init_blog
-      @blog = THE_BLOG
-    end
-
     def blog
       @blog ||= THE_BLOG
     end
