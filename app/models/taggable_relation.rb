@@ -8,9 +8,7 @@ module TaggableRelation
   end
 
   def tagged(tag)
-    joins("JOIN item_tags ON item_tags.item_id = #{table_name}.id AND item_tags.item_type = \"#{klass.name}\"").
-    joins('JOIN tags ON item_tags.tag_id = tags.id').
-    where('tags.name = ?', tag)
+    joins(:tags).where(tags: {name: tag})
   end
 
   def new(attrs={}, &block)
@@ -23,5 +21,10 @@ module TaggableRelation
 
   def klass
     defined?(super) ? super : self
+  end
+
+  def self.extended(mod)
+    mod.has_many :item_tags, as: :item
+    mod.has_many :tags, through: :item_tags
   end
 end
