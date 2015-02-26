@@ -38,6 +38,10 @@ class Blog
     end
   end
 
+  def post(id)
+    entries.find_by_id(id)
+  end
+
   def add_entry(entry)
     entry.save
   end

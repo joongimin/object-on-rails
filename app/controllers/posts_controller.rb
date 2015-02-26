@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = exhibit(Post.find_by_id(params[:id]), self)
+    @post = exhibit(blog.post(params[:id]), self)
     respond_with(@post)
   end
 
