@@ -25,4 +25,7 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body, :image_url, :tags)
     end
+
+    attr_reader :post
+    helper_method :post
 end
