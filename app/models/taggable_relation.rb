@@ -1,3 +1,5 @@
+require_relative 'tag_list'
+
 module TaggableRelation
   def all_tags_alphabetical
     all_tags.alphabetical
