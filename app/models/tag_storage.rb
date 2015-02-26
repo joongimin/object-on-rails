@@ -20,11 +20,11 @@ class TagStorage
     @item_tags ||= fetch_item_tags
   end
 
-  def fetch_item_tags
-    ItemTag.where(item_type: item.class, item_id: item.id).includes(:tag).to_a
-  end
-
   private
+    def fetch_item_tags
+      ItemTag.where(item_type: item.class, item_id: item.id).includes(:tag).to_a
+    end
+
     def add_tags(current_tags, new_tags)
       new_tags = new_tags - current_tags
       new_tags.each do |tag|
