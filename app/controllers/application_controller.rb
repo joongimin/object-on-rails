@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+  include ExhibitsHelper
+
   protect_from_forgery with: :exception
 
   helper :exhibits
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   private
     def blog
-      @blog ||= THE_BLOG
+      @blog ||= exhibit(THE_BLOG)
     end
     helper_method :blog
 end
