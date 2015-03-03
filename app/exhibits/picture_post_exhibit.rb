@@ -1,8 +1,8 @@
 require_relative 'exhibit'
 
-class PicturePostExhibit < Exhibit
+class PicturePostExhibit < PostExhibit
   def self.applicable_to?(object)
-    object_is_any_of?(object, 'Post') && object.picture?
+    super && object.picture?
   end
 
   def render_body(template)

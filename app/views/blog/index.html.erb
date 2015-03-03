@@ -1,3 +1,3 @@
-<%= blog.title %>
-<%= blog.subtitle %>
-<%= render partial: 'posts/post', collection: blog.entries %>
+<h1><%= blog.title %></h1>
+<h2 class="tagline"><%= blog.subtitle %></h2>
+<%= blog.entries.render(self) %>

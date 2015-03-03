@@ -20,6 +20,18 @@ class Exhibit < SimpleDelegator
     Exhibit.exhibit(model, context)
   end
 
+  def to_partial_path
+    if __getobj__.respond_to?(:to_partial_path)
+      __getobj__.to_partial_path
+    else
+      partialize_name(__getobj__.class.name)
+    end
+  end
+
+  def render(template)
+    template.render(partial: to_partial_path, object: self)
+  end
+
   def self.exhibit(object, context)
     exhibits.inject(object) do |o, exhibit|
       exhibit.exhibit_if_applicable(o, context)
@@ -44,7 +56,8 @@ class Exhibit < SimpleDelegator
       BlogExhibit,
       TextPostExhibit,
       PicturePostExhibit,
-      LinkExhibit
+      LinkExhibit,
+      TagListExhibit
     ]
   end
 
@@ -72,4 +85,9 @@ class Exhibit < SimpleDelegator
     end
   end
   private_class_method :exhibit_enum
+
+  private
+    def partialize_name(name)
+      "/#{name.underscore.pluralize}/#{name.demodulize.underscore}"
+    end
 end

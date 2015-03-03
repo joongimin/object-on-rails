@@ -3,7 +3,7 @@
     <p><time pubdate="pubdate"><%= post.pubdate %></time></p>
     <h3><%= post.title %></h3>
     <p class="entry_tags">Tags:
-      <span class="tags"><%= Taggable(post).tags %></span>
+      <span class="tags"><%= post.tags.render(self) %></span>
     </p>
   </header>
   <%= post.render_body(self) %>

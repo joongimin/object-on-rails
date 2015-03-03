@@ -13,7 +13,7 @@ class TagList
   include Enumerable
 
   attr_reader :tags
-  def_delegators :tags, :empty?, :to_a, :each
+  def_delegators :tags, :empty?, :to_a, :each, :size
 
   def initialize(tags)
     case tags
